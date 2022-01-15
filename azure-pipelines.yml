@@ -1,4 +1,4 @@
-Systrigger:
+trigger:
 - '*'
 
 variables:
