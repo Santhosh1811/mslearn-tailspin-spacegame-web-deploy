@@ -1,4 +1,4 @@
-trigger:
+Systrigger:
 - '*'
 
 variables:
@@ -13,6 +13,7 @@ stages:
     pool:
       name: 'MyAgentPool'
       demands:
+      - node
       - npm
 
     variables:
