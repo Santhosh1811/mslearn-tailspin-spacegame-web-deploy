@@ -13,7 +13,6 @@ stages:
     pool:
       name: 'MyAgentPool'
       demands:
-      - node
       - npm
 
     variables:
