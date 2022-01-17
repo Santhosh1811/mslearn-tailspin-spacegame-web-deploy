@@ -13,6 +13,7 @@ stages:
     pool:
       vmImage: 'ubuntu-20.04'
       demands:
+      - node.js
       - npm
 
     variables:
