@@ -1,5 +1,5 @@
 trigger:
-- none
+- blue-green
 
 variables:
   buildConfiguration: 'Release'
@@ -13,7 +13,6 @@ stages:
     pool:
       name: 'MyAgentPool'
       demands:
-      - node.js
       - npm
 
     variables:
@@ -132,5 +131,17 @@ stages:
             displayName: 'Azure App Service Deploy: website'
             inputs:
               azureSubscription: 'Resource Manager - Tailspin - Space Game2'
+              deployToSlotOrASE: 'true'
+              resourceGroupName: 'tailspin-space-game'
+              slotName: 'swap'
               appName: '$(WebAppNameStaging)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
+          - task: AzureAppServiceManage@0
+            displayName: 'Swap deployment slots'
+            inputs:
+              azureSubscription: 'Resource Manager - Tailspin - Space Game2'
+              resourceGroupName: 'tailspin-space-game'
+              webAppName: '$(WebAppNameStaging)'
+              sourceSlot: 'swap'
+              targetSlot: 'production'
+              action: 'Swap Slots'
